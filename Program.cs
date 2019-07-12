@@ -125,16 +125,14 @@ namespace Linq
                 CITI 1
             */
 
-            IEnumerable<Customer> millies = customers.Where(customer =>
-            {
-                return customer.Balance > 1000000;
-            });
-            var groupedMillies = millies.GroupBy(customer => customer.Bank);
+            IEnumerable<Customer> millies = customers.Where(customer => customer.Balance > 1000000);
+            var groupedMillies = millies.GroupBy(customer => customer.Bank)
+            // .Select(millie =>
+            // System.Console.WriteLine($"{millie.Key} {millie.Count()}"));
 
             foreach (IGrouping<string, Customer> millie in groupedMillies)
             {
-                int num = millie.Count();
-                System.Console.WriteLine($"{millie.Key} {num}");
+                System.Console.WriteLine($"{millie.Key} {millie.Count()}");
             }
         }
     }
